@@ -33,11 +33,19 @@ This should be a standalone “TL;DR” of your project.
 
 ---
 
-## 📑 **Slides \& Videos**
+## 📑 **Slides**
 
 - [Midterm Checkpoint Slides](http://)  
 - [Final Presentation Slides](http://)
 - If Needed: Links to have any videos demonstrating your project
+
+---
+
+> Delete this section if you have node videos.
+
+##  **Videos**
+
+- Links to any videos demonstrating your project
 
 ---
 
