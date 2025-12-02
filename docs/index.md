@@ -43,9 +43,9 @@ This should be a standalone “TL;DR” of your project.
 
 > Delete this section if you have no videos.
 
-## 🎬 **Videos**
+## 🎛️ **Media**
 
-- Links to any videos demonstrating your project
+- Links to any video or audio recordings demonstrating your project
 
 ---
 
