@@ -1,6 +1,4 @@
-# ecem202a_project
-
-This is recommended repository template for UCLA ECEM202A / CSM213A projects.
+# Recommended repository template for UCLA ECEM202A / CSM213A projects.
 
 Structure overview
 
@@ -12,15 +10,14 @@ You may add additional files and folders as necessary.
 
 The doc/ folder has a simple GitHub Pages website template using markdown, but you can put any static html content there. GitHub Pages looks for index.html as the root file for the website and if that is not found then index.md, and then README.md. Jekyll (the static site generator used by GitHub Pages) will convert markdown content into html. Please update docs/\_config.yml with your project's title and description.
 
-
 ✅ Expectations for a Strong Project Website
-	•	Introduction: Clear motivation, context, and goals.
-	•	Related Work: 5–12 relevant references with explanation.
-	•	Technical Approach: Architecture diagram, pipeline, algorithm details.
-	•	Evaluation: Multiple clear plots/tables, baselines, and analysis.
-	•	Figures: High-quality diagrams, plots, and qualitative examples.
-	•	Reproducibility: Datasets and software described with links.
-	•	Polish: Well-written, structured, and visually clean.
+* Introduction: Clear motivation, context, and goals.
+* Related Work: 5–12 relevant references with explanation.
+* Technical Approach: Architecture diagram, pipeline, algorithm details.
+* Evaluation: Multiple clear plots/tables, baselines, and analysis.
+* Figures: High-quality diagrams, plots, and qualitative examples.
+* Reproducibility: Datasets and software described with links.
+* Polish: Well-written, structured, and visually clean.
 
 Your website is your final report – treat it like a conference-style project writeup, but more visual and accessible.
 
