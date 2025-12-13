@@ -56,7 +56,7 @@ With this project, there is now a microcontroller-based platform to communicate 
 The main technicaly challenge with this project is establishing a reliable way to connect via a microncontroller to the Go2 Robot. In order to connect to Go2 robots over WebRTC, the pipeline requires a full WebRTC stack, which involves ICE (candidate gathering, connectivity checks), DTLS (certificate exchange, handshake, encryption), SCTP over DTLS (for data channels), and SRTP / RTP (for video). WebRTC is fundamentally too heavy, stateful, and cryptography-intensive for a microcontroller-class device like the ESP32, especially under an RTOS, meant to be lightweight. Another challenge is implementing WebRTC on the Raspberry Pi, simply because of its complexity. 
 
 ### **1.6 Metrics of Success**  
-The specific metrics used to evaluate this project is functionally being able to control the Go2 robot through an ESP32, being able to execute a variety of commands, measuring the limits to the UART message passing rate between the Raspberry Pi and the ESP32, and measuring the UART loopback latency from the Raspberry Pi to the ESP32 back to the Raspberry Pi to evaluate the overhead from Pi <-> ESP32 message passing over UART. 
+The specific metrics used to evaluate this project is functionally being able to control the Go2 robot through an ESP32, being able to execute a variety of commands, and measuring the limits to the UART message passing rate between the Raspberry Pi and the ESP32. 
 
 ---
 
@@ -179,6 +179,8 @@ Current Setup requires a Raspberry Pi and an ESP32s3 N16R8.
 
 UART Wiring Diagram:
 ![Wiring](./assets/img/wiring.jpeg)  
+
+Connect the Raspberrt Pi UART (Top Right) to the ESP32 UART1. Connect TXD to RXD respectively, and GND to GND. 
 
 ## **7.b. Software**
 
