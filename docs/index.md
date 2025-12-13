@@ -1,6 +1,6 @@
 ---
 layout: default
-title: "Project Title"
+title: "Exploring Real-Time WebRTC Interface on MCUs & MPUs for Unitree GO2 Robots"
 ---
 
 # **Exploring Real-Time WebRTC Interface on MCUs & MPUs for Unitree GO2 Robots**
@@ -19,17 +19,7 @@ title: "Project Title"
 
 ## 📝 **Abstract**
 
-Provide a short paragraph (4–6 sentences) summarizing:
-
-- The problem you addressed  
-- Your approach  
-- Key results  
-- The significance of your findings  
-
-This should be a standalone “TL;DR” of your project.
-
 The motivation for this project is that there is one main Unitree GO2 Web-based Communication Interface using WebRTC (that all similar implementations are based on), but is designed to run on a full computer. The goal of this project is to establish control from a microcontroller to the Go2 Robot, which enables a MCU-based platform for interacting with Go2 robots, opening up many avenues for future Go2 robot control from a microcontroller. To connect to Unitree Go2 Robots, opening a datachannel requires establishing a WebRTC connection, which requires the use of a full WebRTC stack, Crypto stack, and a signaling server. Due to resource limits and a general lack of WebRTC support, it is not suitable to implement a full WebRTC stack on a microcontroller. Instead, I introduced a Raspberry Pi as a medium to establish a WebRTC connection and open datachannel to the Go2 robot, and transmit and forward messages to an ESP32 over UART. On the ESP32, I use the Zephyr RTOS as the OS backend to process and send messages, and developed a custom list of shell commands to interact directly to the Go2 robot from an ESP32. With establishing succesful Go2 robot control, this serves an initial microntroller based platform for Go2 robot control. 
-
 
 ---
 
@@ -39,8 +29,6 @@ The motivation for this project is that there is one main Unitree GO2 Web-based 
 - [Final Presentation Slides](http://)
 
 ---
-
-> Delete this section if you have no videos.
 
 ## 🎛️ **Media**
 
@@ -56,10 +44,9 @@ Use the introduction to clearly set context, describe motivation, and explain th
 The Unitree Go2 Robot unofficially has one way to communicate (receive/send messages) without using the provided hardware/software tools - through establishing a WebRTC connection and opening a datachannel to subcribe to various sensor/state topics. This approach exists as a python-based open-source implementation that has been adapted for other platforms such as ROS2, but there is no official porting avenue for microcontroller based unitree Go2 robot control. 
 
 ### **1.2 State of the Art & Its Limitations**  
-Previous implementations such as the Unitree Go2 ROS2 SDK Project [Nuralem] or the original WebRTC hack implementation go2-webrtc [Foldi] execute on a python-based backend, leveraging the python library (aiortc)[https://github.com/aiortc/aiortc], a complete WebRTC ecosystem. There exist little resources online for developing a WebRTC client on a microcontroller, and there are no microcontroller based solutions specifically for Unitree Go2 robots. 
+Previous implementations such as the Unitree Go2 ROS2 SDK Project [Nuralem] or the original WebRTC hack implementation go2-webrtc [Foldi] execute on a python-based backend, leveraging the python library [aiortc](https://github.com/aiortc/aiortc), a complete WebRTC ecosystem. There exist little resources online for developing a WebRTC client on a microcontroller, and there are no microcontroller based solutions specifically for Unitree Go2 robots. 
 
 ### **1.3 Novelty & Rationale**  
-What is new about your approach, and why do you expect it to succeed?
 What is unique about this new approach is that the primary control is offloaded to the microcontroller, including message construction, message decoding, and specific control to the Unitree Go2 Robot. Because it leverages a Raspberry Pi to extablish a WebRTC connection instead of implementing it directly on a microcontroller, this solution bypasses the need to develop a full WebRTC client directly on a microcontroller, instead focusing more on developing a platform to establish Go2 robot control. 
 
 ### **1.4 Potential Impact**  
@@ -69,35 +56,33 @@ With this project, there is now a microcontroller-based platform to communicate 
 The main technicaly challenge with this project is establishing a reliable way to connect via a microncontroller to the Go2 Robot. In order to connect to Go2 robots over WebRTC, the pipeline requires a full WebRTC stack, which involves ICE (candidate gathering, connectivity checks), DTLS (certificate exchange, handshake, encryption), SCTP over DTLS (for data channels), and SRTP / RTP (for video). WebRTC is fundamentally too heavy, stateful, and cryptography-intensive for a microcontroller-class device like the ESP32, especially under an RTOS, meant to be lightweight. Another challenge is implementing WebRTC on the Raspberry Pi, simply because of its complexity. 
 
 ### **1.6 Metrics of Success**  
-What are the specific, measurable criteria for evaluating your project?
 The specific metrics used to evaluate this project is functionally being able to control the Go2 robot through an ESP32, being able to execute a variety of commands, measuring the limits to the UART message passing rate between the Raspberry Pi and the ESP32, and measuring the UART loopback latency from the Raspberry Pi to the ESP32 back to the Raspberry Pi to evaluate the overhead from Pi <-> ESP32 message passing over UART. 
+
 ---
 
 # **2. Related Work**
 
-The original Go2 WebRTC implementation is [go2-webrtc](https://github.com/tfoldi/go2-webrtc)[Foldi], from which all similar platforms are based upon. go2-webrtc leverages the `aiortc` Python library to execute the full WebRTC stack to be able to establish a connection and open a datachannel to the Go2 robot, for video streaming, sensor streaming, and robot actuation control. Based on this approach is the [go2-ros-sdk](https://github.com/abizovnuralem/go2_ros2_sdk/tree/master)[Nuralem], which leverages the original framework to expand into a full SDK in ROS2, subscribing to various sensor topics including lidar, IMU, etc. and camera streaming in order to create a complete application with a full Go2 robot view. Another robust Python API that uses the Go2 WebRTC driver to communicate is [unitree-webrtc-connect](https://github.com/legion1581/unitree_webrtc_connect), which also contains audio and video support. All of these frameworks are python-based, and all leverage the `aiortc` WebRTC library. I used all of these as references to leverage when developing a WebRTC platform connection on the Raspberry Pi to connect to the Go2 Robot. 
-
-Reference all citations in **Section 6**.
+The original Go2 WebRTC implementation is [go2-webrtc](https://github.com/tfoldi/go2-webrtc) [Foldi], from which all similar platforms are based upon. go2-webrtc leverages the `aiortc` Python library to execute the full WebRTC stack to be able to establish a connection and open a datachannel to the Go2 robot, for video streaming, sensor streaming, and robot actuation control. Based on this approach is the [go2-ros-sdk](https://github.com/abizovnuralem/go2_ros2_sdk/tree/master) [Nuralem], which leverages the original framework to expand into a full SDK in ROS2, subscribing to various sensor topics including lidar, IMU, etc. and camera streaming in order to create a complete application with a full Go2 robot view. Another robust Python API that uses the Go2 WebRTC driver to communicate is [unitree-webrtc-connect](https://github.com/legion1581/unitree_webrtc_connect), which also contains audio and video support. All of these frameworks are python-based, and all leverage the `aiortc` WebRTC library. I used all of these as references to leverage when developing a WebRTC platform connection on the Raspberry Pi to connect to the Go2 Robot. 
 
 ---
 
 # **3. Technical Approach**
 
-Recommended subsections:
 ### **3.1 Hardware and Software Design**
 The microcontroller that I chose was the ESP32-S3-N16R8 board, equipped with built-in Wi-Fi with additional Antenna, 8MB PSRAM, 16MB Flash, and 2 preconfigured UART ports. For software, it is built on the Zephyr RTOS platform, which contains many useful features for this project, including a robust scheduling platform, existing ESP32s3 driver support, JSON parsing, multithreading, WiFi mgmst, DTLS support, and WebSockets. Zephyr is also designed to be very modular, so it should be easily able to port from ESP32s3 to other MCUs for other work, requiring only devicetree overlay and configuration changes. The Raspberry Pi uses Python to leverage the existing WebRTC Go2 support, using the `aiortc` library and `pyserial` for UART communication. 
 
 ### **3.2 High Level System Architecture**
 
-![System](./assets/img/system.jpeg)  
+![System](./assets/img/system.png)  
 
 The high level architecture of the system involves using the Raspberry Pi to establish a connection and open a datachannel over WebRTC to the robot. The Raspberry Pi launches a UART RX thread and establishes connection to the Go2 via a client class containing an asynchornous event loop for being notified of WebRTC connection related messages, including validation, message reception, and opening the datachannel. The UART RX thread registers incoming input from the UART RX port on the Raspberry Pi, forwarding the message exactly as it was received directly over the WebRTC datachannel port to the Go2 robot. 
 
-### **3.2 WebRTC Data Pipeline**
+### **3.3 WebRTC Data Pipeline**
+
 ![WebRTC pipeline](./assets/img/webrtc.jpeg)  
 
 
-### **3.3 Raspberry Pi to ESP32 UART Pipeline**
+### **3.4 Raspberry Pi to ESP32 UART Pipeline**
 ![UART](./assets/img/uart_design.jpeg)  
 The reason I chose UART as the communication protocl between the Pi and the ESP32 is that is simple, has separate TX/RX lines (as opposed to I2C), and it is relatively easy to design a packet protocol for both directions to accommodate larger packets using UART. There is also robust serial support in both Zephyr and in Python. I had also looked into SPI, but the ESP32 SPI device does not have peripheral mode support (in hardware / in the Zephyr driver), and neither does Raspberry Pi, so it wasn’t feasible, as the controller-peripheral pipeline is imperative to SPI. 
 
@@ -111,22 +96,26 @@ For the UART packet design protocol, the packets are sent and received as follow
 
 This packet structure allows asynchronous message passing and receival, perfect for the bidirectional link between the Pi and ESP32, for which messaging intervals are not determined.
 
-### **3.3 Zephyr Application Design **
+### **3.5 Zephyr Application Design **
+
 ![Zephyr](./assets/img/zephyr.jpeg)  
 The Zephyr main application (`main.c`) launches two threads to `process_messages.c` and `uart_rx_tx.c`, which is the main UART processing thread. The main application also defines a `json_rx_queue` and a `json_tx_queue`. The UART thread waits on messages to the `json_tx_queue`, which are messages pushed in the Zephyr application that are intended to be sent out to the Raspberry Pi. The UART thread also continuously waits on messages from the UART RX port, and pushed them to the `json_rx_queue`, which notifies the process_messages thread for further processing, such as JSON decoding. 
 
-### **3.4 Zephyr Shell Design **
-![Zephyr Shell](./assets/img/zephyr_shell.jpeg)  
+### **3.6 Zephyr Shell Design **
+
+![Zephyr Shell](./assets/img/zephyr_shell.png)  
 To test this platform and establish control to the Go2 robots from the ESP32, I developed a Zephyr Shell application that uses a UART backend to be able to send custom messages to the Go2 such as 
 
 `go2 standup` 
+
 `go2 standown`
+
 `go2 send Hello`
 
-After receiving a command, using  `command_generator.c `, the correct JSON messages are created according to the Go2 JSON messaging structure, including type of command, command id (pseudo random created from the kernel timestamp), API id, and parameters. It then pushes this complete JSON message to the `json_tx_queue`, which notifies the UART thread that it should send out a message to the Raspberry Pi. 
+After receiving a command, using  `command_generator.c`, the correct JSON messages are created according to the Go2 JSON messaging structure, including type of command, command id (pseudo random created from the kernel timestamp), API id, and parameters. It then pushes this complete JSON message to the `json_tx_queue`, which notifies the UART thread that it should send out a message to the Raspberry Pi. 
 
-### **3.5 Key Design Decisions & Rationale**
-Organizing the Zephyr applications into multple threads allows for clean execution and separation of processes, perfect of a real-time control system like this. Also, the UART packet structure is designed to indicate message passing errors (with CRC), allowing for robust message passing. The Go2 Zephyr shell provides a simple and robust medium to test many different types of commands to send to the Go2. 
+### **3.7 Key Design Decisions & Rationale**
+Organizing the Zephyr applications into multiple threads allows for clean execution and separation of processes, perfect of a real-time control system like this. Also, the UART packet structure is designed to indicate message passing errors (with CRC), allowing for robust message passing. The Go2 Zephyr shell provides a simple and robust medium to test many different types of commands to send to the Go2. 
 
 ---
 
