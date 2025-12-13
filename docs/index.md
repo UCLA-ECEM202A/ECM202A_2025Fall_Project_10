@@ -25,14 +25,14 @@ The motivation for this project is that there is one main Unitree GO2 Web-based 
 
 ## 📑 **Slides**
 
-- [Midterm Checkpoint Slides](http://)  
-- [Final Presentation Slides](http://)
+- [Midterm Checkpoint Slides](https://github.com/akkuduvalli/ECM202A_2025Fall_Project_10/blob/main/docs/MidtermPresentationECE202A.pdf)  
+- [Final Presentation Slides](https://github.com/akkuduvalli/ECM202A_2025Fall_Project_10/blob/main/docs/FinalPresentationECE202A.pdf)
 
 ---
 
 ## 🎛️ **Media**
 
-- [Video Demo of Robot Control from an ESP32s3](http://)
+- [Video Demo of Robot Control from an ESP32s3](https://drive.google.com/file/d/1L1Rdjotad72nF4gRtMwOwyuM_IeZ4cfl/view?usp=sharing)
 
 ---
 
@@ -176,14 +176,18 @@ Provide full citations for all sources (academic papers, websites, etc.) referen
 ## **7.a. Software**
 
 The `Python` Folder Contains all necessary Raspberry Pi execution files. 
-* `webrtc_go2.py` Go2Connection class for connecting to the Go2 robots
-* 
+* `webrtc_go2_connection.py` Go2Connection class for connecting to the Go2 robots
+* `web_rtc_go2_client.py` is the client class that establishes connection with Go2 and runs a thread for UART TX/RX
 
 Installation and Execution:
 * clone this repository
 * `cd python `
 * create a python virtual environment and run `pip install -r requirements.txt`
 * Run the following for proxy requirements:
+
+
+* Run `web_rtc_go2_client.py` for establishing webrtc connection and opening the datachannel (replace ip address with the address of the go2 robot)
+* Run `pi_to_esp_uart.py` for debugging UART with ESP32
 
 
 The `Zephyr` library contains all necessary ESP32s3 execution files. 
