@@ -53,21 +53,21 @@ The motivation for this project is that there is one main Unitree GO2 Web-based 
 Use the introduction to clearly set context, describe motivation, and explain the central idea behind your project.
 
 ### **1.1 Motivation & Objective**  
-What are you trying to do and why is it important? Explain in accessible, non-jargon terms.
+The Unitree Go2 Robot unofficially has one way to communicate (receive/send messages) without using the provided hardware/software tools - through establishing a WebRTC connection and opening a datachannel to subcribe to various sensor/state topics. This approach exists as a python-based open-source implementation that has been adapted for other platforms such as ROS2, but there is no official porting avenue for microcontroller based unitree Go2 robot control. 
 
 ### **1.2 State of the Art & Its Limitations**  
-How is this problem addressed today?  
-What gaps or limitations exist?  
-Cite prior work using a consistent style like [Smith21].
+Previous implementations such as the Unitree Go2 ROS2 SDK Project [Nuralem] or the original WebRTC hack implementation go2-webrtc [Foldi] execute on a python-based backend, leveraging the python library (aiortc)[https://github.com/aiortc/aiortc], a complete WebRTC ecosystem. There exist little resources online for developing a WebRTC client on a microcontroller, and there are no microcontroller based solutions specifically for Unitree Go2 robots. 
 
 ### **1.3 Novelty & Rationale**  
 What is new about your approach, and why do you expect it to succeed?
+What is unique about this new approach is that the primary control is offloaded to the microcontroller, including message construction, message decoding, and specific control to the Unitree Go2 Robot. Because it leverages a Raspberry Pi to extablish a WebRTC connection instead of implementing it directly on a microcontroller, this solution bypasses the need to develop a full WebRTC client directly on a microcontroller, instead focusing more on developing a platform to establish Go2 robot control. 
 
 ### **1.4 Potential Impact**  
-If successful, what technical or broader impact could this project have?
+With this project, there is now a microcontroller-based platform to communicate with a Unitree Go2 robot. This opens up many avenues for developing projects that control the Unitree robots through a microcontroller, and opens up avenues for Go2 sensor processing offloaded to a microcontroller. With this platform, there are opportunities to control Go2 robots in a more compute and resource constrainsed environment, potentially valuable research with the full Go2 robot control. 
 
 ### **1.5 Challenges**  
 List the main technical, practical, or methodological challenges.
+The main technicaly challenge with this project is establishing a reliable way to connect via a microncontroller to the Go2 Robot. In order to connect to Go2 robots over WebRTC, the pipeline requires a full WebRTC stack, which involves 
 
 ### **1.6 Metrics of Success**  
 What are the specific, measurable criteria for evaluating your project?
