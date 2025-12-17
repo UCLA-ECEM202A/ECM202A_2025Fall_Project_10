@@ -1,4 +1,4 @@
-#theme: jekyll-theme-modernist
+theme: jekyll-theme-modernist
 show_downloads: true
 
 # google_analytics:[Your Google Analytics tracking ID]
@@ -11,9 +11,9 @@ description: "Course project website for EC M202A / CS M213A"
 url: "https://akkuduvalli.github.io"        # replace UCLA-ECEM202A with your github id
 baseurl: "/ECEM202A_2025Fall_Project_10"    # replace ecem202a_project with your project name, e.g., "/ECEM202A_2025Fall_Project_1"
 
-markdown: kramdown
-kramdown:
-  input: GFM
+# markdown: kramdown
+# kramdown:
+#   input: GFM
 
-# Necessary for GitHub Pages
-plugins: []
+# # Necessary for GitHub Pages
+# plugins: []
