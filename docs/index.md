@@ -7,7 +7,7 @@ title: "Exploring Real-Time WebRTC Interface on MCUs & MPUs for Unitree GO2 Robo
 
 *ESP32 and Raspberry Pi interface for communicating with Unitree Go2 Robots*
 
-![Project Banner](docs/assets/img/banner.png)
+![Project Banner](/docs/assets/img/banner.png)
 
 ---
 
